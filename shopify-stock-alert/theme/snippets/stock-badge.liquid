@@ -1,0 +1,44 @@
+{%- comment -%}
+ 
+  Affiche un badge qui annonce une rupture de stock.
+  Shows a badge announcing low stock or zero stock
+
+{%- endcomment -%}
+
+{%-liquid
+  
+  assign low_stock_amount = low_stock_amount | default: 5
+  assign zero_stock_amount = zero_stock_amount | default: 0
+  assign product = product.selected_or_first_available_variant
+-%}
+
+{%- if product.inventory_management == 'shopify' -%}
+  {%- if product.inventory_quantity == zero_stock_amount -%}
+    <span class="stock-badge stock-badge--zero">No stock</span>
+  {% elsif product.inventory_quantity <=5 %}
+    <span class="badge-stock badge-stock--bas">
+      Only {{ product.inventory_quantity }} in stock
+    </span>
+
+    
+  {%- endif -%}
+{%- endif -%}
+
+{% stylesheet %}
+
+  .stock-badge{
+    display:inline-block;
+    padding: 0.25rem 0.5rem;
+    border-radius:999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    background: #f2f2f2;
+    color: #111;
+  }
+
+  .stock-badge-zero{
+    background: #ffe5e5;
+    color: #b42318;
+  }
+
+{% endstylesheet %}
