@@ -15,8 +15,8 @@
 {%- if product.inventory_management == 'shopify' -%}
   {%- if product.inventory_quantity == zero_stock_amount -%}
     <span class="stock-badge stock-badge--zero">No stock</span>
-  {% elsif product.inventory_quantity <=5 %}
-    <span class="badge-stock badge-stock--bas">
+  {% elsif product.inventory_quantity <=low_stock_amount %}
+    <span class="stock-badge stock-badge--low">
       Only {{ product.inventory_quantity }} in stock
     </span>
 
@@ -36,9 +36,14 @@
     color: #111;
   }
 
-  .stock-badge-zero{
+  .stock-badge--zero{
     background: #ffe5e5;
     color: #b42318;
+  }
+
+  .stock-badge--low{
+    background: #ffe5e5;
+    color: #ff7700;
   }
 
 {% endstylesheet %}

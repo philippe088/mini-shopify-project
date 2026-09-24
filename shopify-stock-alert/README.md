@@ -1,28 +1,46 @@
-# Alerte de stock – Thème Liquid et application Shopify
+# Stock Alert – Liquid Theme and Shopify App
 
-## Pourquoi ce projet
+## Why this project
 
-Projet personnel réalisé pour apprendre Shopify, en reprenant la logique de mise à jour des stocks à partir de messages (déjà utilisée dans un projet précédent avec Azure) et en la reproduisant avec les outils Shopify.
+A personal project built to learn Shopify, reusing the same stock-update logic I had already implemented from messages in a previous project (on Azure), reproduced here with Shopify's own tools.
 
-## Fonctionnalités
+## Features
 
-- **Thème (Liquid) :** section « Produits vedettes » avec un badge « Plus que X en stock » quand l'inventaire est bas, et « Épuisé » à 0.
-- **Application d'administration :** liste des produits en stock bas, seuil configurable, et journal des mises à jour reçues par webhook (`products/update`).
+- **Theme (Liquid):** a "Premium Products" section with an "Only X in stock" badge when inventory is at or below a configurable threshold, and "No stock" at 0.
+- **Admin app:** lists low-stock products, a configurable threshold, and a log of updates received via webhook (`products/update`).
 
-> Projet en cours de construction — voir l'avancement dans les commits.
+> Project under construction — see progress in the commits.
+
+## Screenshots
+
+The store is a private development store, so here is what it looks like.
+
+**Premium Products section on the home page:** the "No stock" badge (0 units) and the "Only 3 in stock" badge (3 units, threshold of 5).
+
+![Premium Products section with stock badges](docs/screenshots/home.png)
+
+**Configurable threshold in the theme editor:** the same product with 3 units in stock, before and after changing "Low Product Threshold".
+
+| Threshold 5: stock is below it, badge shown | Threshold 2: stock is above it, no badge |
+|---|---|
+| ![Threshold set to 5](docs/screenshots/below-threshold.png) | ![Threshold set to 2](docs/screenshots/above-threshold.png) |
+
+**Inventory in the Shopify admin:** the badges come from real inventory data (`Liquid`: 3 in stock, `Multi-managed`: 0 in stock).
+
+![Products page in the Shopify admin](docs/screenshots/products-admin-page.png)
 
 ## Technologies
 
-Liquid · Shopify CLI · Skeleton theme · Theme Check · React Router 7 · TypeScript · Polaris · API Admin GraphQL · Webhooks · Prisma · SQLite
+Liquid · Shopify CLI · Skeleton theme · Theme Check · React Router 7 · TypeScript · Polaris · Admin GraphQL API · Webhooks · Prisma · SQLite
 
-## Exécution locale
+## Running locally
 
 ```powershell
-# Thème
+# Theme
 cd theme
-shopify theme dev --store <ton-nom-de-boutique>
+shopify theme dev --store <your-store-name>
 
-# Application
+# App
 cd alerte-stock-app
 shopify app dev
 ```

@@ -1,0 +1,118 @@
+{% comment %}
+
+  Section highlighting premium products
+
+{% endcomment %}
+
+<section class="premium-products">
+  <h2>{{ section.settings.title | escape }}</h2>
+
+  <ul class="premium-products-list">
+    {% for product in section.settings.collection.products limit: section.settings.number %}
+      <li class="premium-products-card">
+        <a href="{{ product.url }}">
+          {% if product.featured_image %}
+            {{ product.featured_image | image_url: width: 400 | image_tag: loading: 'lazy', alt: product.title }}
+          {% endif %}
+          <h3>{{ product.title | escape }}</h3>
+          <p>{{ product.price | money }}</p>
+          {% render 'stock-badge', product: product, low_stock_amount: section.settings.limit %}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</section>
+
+{% stylesheet %}
+  .premium-products {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 1rem;
+  }
+
+  .premium-products h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin: 0 0 2rem;
+  }
+
+  .premium-products-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .premium-products-card {
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .premium-products-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  }
+
+  .premium-products-card a {
+    display: block;
+    height: 100%;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .premium-products-card img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+  }
+
+  .premium-products-card h3 {
+    font-size: 1rem;
+    margin: 0;
+    padding: 1rem 1rem 0.25rem;
+  }
+
+  .premium-products-card p {
+    margin: 0;
+    padding: 0 1rem 1rem;
+    font-weight: 600;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Premium Products",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Title", "default": "Premium Products" },
+    { "type": "collection", "id": "collection", "label": "Collection" },
+    {
+      "type": "range",
+      "id": "number",
+      "label": "Product Quantity",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "limit",
+      "label": "Low Product Threshold",
+      "min": 1,
+      "max": 20,
+      "step": 1,
+      "default": 5
+    }
+  ],
+  "presets": [
+    {"name":"Premium Products"}
+  ]
+}
+{% endschema %}
