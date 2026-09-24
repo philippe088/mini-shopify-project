@@ -17,17 +17,17 @@ The store is a private development store, so here is what it looks like.
 
 **Premium Products section on the home page:** the "No stock" badge (0 units) and the "Only 3 in stock" badge (3 units, threshold of 5).
 
-![Premium Products section with stock badges](docs/screenshots/home.png)
+![Premium Products section with stock badges](shopify-stock-alert/docs/screenshots/home.png)
 
 **Configurable threshold in the theme editor:** the same product with 3 units in stock, before and after changing "Low Product Threshold".
 
 | Threshold 5: stock is below it, badge shown | Threshold 2: stock is above it, no badge |
 |---|---|
-| ![Threshold set to 5](docs/screenshots/below-threshold.png) | ![Threshold set to 2](docs/screenshots/above-threshold.png) |
+| ![Threshold set to 5](shopify-stock-alert/docs/screenshots/below-threshold.png) | ![Threshold set to 2](shopify-stock-alert/docs/screenshots/above-threshold.png) |
 
 **Inventory in the Shopify admin:** the badges come from real inventory data (`Liquid`: 3 in stock, `Multi-managed`: 0 in stock).
 
-![Products page in the Shopify admin](docs/screenshots/products-admin-page.png)
+![Products page in the Shopify admin](shopify-stock-alert/docs/screenshots/products-admin-page.png)
 
 ## Technologies
 
@@ -37,10 +37,10 @@ Liquid · Shopify CLI · Skeleton theme · Theme Check · React Router 7 · Type
 
 ```powershell
 # Theme
-cd theme
+cd shopify-stock-alert/theme
 shopify theme dev --store <your-store-name>
 
 # App
-cd alerte-stock-app
+cd shopify-stock-alert/alerte-stock-app
 shopify app dev
 ```
