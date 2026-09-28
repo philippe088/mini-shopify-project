@@ -6,10 +6,9 @@ A personal project built to learn Shopify, reusing the same stock-update logic I
 
 ## Features
 
-- **Theme (Liquid):** a "Premium Products" section with an "Only X in stock" badge when inventory is at or below a configurable threshold, and "No stock" at 0.
-- **Admin app:** lists low-stock products, a configurable threshold, and a log of updates received via webhook (`products/update`).
+**Done – Theme (Liquid):** a "Premium Products" section with an "Only X in stock" badge when inventory is at or below a threshold configurable in the theme editor, and "No stock" at 0.
 
-> Project under construction — see progress in the commits.
+**In progress – Admin app:** will list low-stock products through the Admin GraphQL API, store the threshold, and log product updates received via webhook (`products/update`).
 
 ## Screenshots
 
@@ -31,16 +30,13 @@ The store is a private development store, so here is what it looks like.
 
 ## Technologies
 
-Liquid · Shopify CLI · Skeleton theme · Theme Check · React Router 7 · TypeScript · Polaris · Admin GraphQL API · Webhooks · Prisma · SQLite
+Liquid · Shopify CLI · Skeleton theme · Theme Check
+
+Planned for the app: React Router 7 · TypeScript · Polaris · Admin GraphQL API · Webhooks · Prisma
 
 ## Running locally
 
 ```powershell
-# Theme
 cd shopify-stock-alert/theme
 shopify theme dev --store <your-store-name>
-
-# App
-cd shopify-stock-alert/alerte-stock-app
-shopify app dev
 ```
